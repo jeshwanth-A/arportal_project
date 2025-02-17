@@ -12,7 +12,7 @@ export default function UploadPage() {
     formData.append("file", file);
     
     try {
-      const response = await axios.post("http://localhost:8003/upload", formData, {
+      const response = await axios.post("http://localhost:8004/upload", formData, {
         headers: { "Content-Type": "multipart/form-data" },
       });
 
