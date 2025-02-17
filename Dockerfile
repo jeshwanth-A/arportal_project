@@ -1,14 +1,14 @@
-# Use the official Nginx image as a base image
 FROM nginx:alpine
 
-# Remove the default Nginx index page
-RUN rm /usr/share/nginx/html/*
+# Remove default config and copy yours
+RUN rm /etc/nginx/conf.d/default.conf
+COPY default.conf /etc/nginx/conf.d/
 
-# Copy our custom index.html to the container
+# Copy your index.html
 COPY index.html /usr/share/nginx/html/index.html
 
-# Expose port 80 for the web server
-EXPOSE 80
+# No need to EXPOSE 80 for Cloud Run
+# EXPOSE 80
 
-# Start Nginx in the foreground
+# Start Nginx
 CMD ["nginx", "-g", "daemon off;"]
